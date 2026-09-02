@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var cont = 0
+            $('#botao').click(function () {
+                cont = cont + 1;
+                var nome = $('#nome').val();
+                var tel = $('#tel').val();
+                var email = $('#email').val();
+                // $("div").append("<br><b>CADASTRO<b>",cont,"<br>nome:", nome, "<br>telefone:", tel, "<br>email:", email,"<br>");
+                var request = $.ajax({
+
+                    url: "script.php",
+                    type: "POST",
+                    data: "#nome=" + nome + "& #telefone=" + tel + "& #email=" + email,
+                    dataType: "html"
+                }).done(function (resposta) {
+                    console.log(resposta);
+
+                }).fail(function (jqXHR, textStatus) {
+                    console.log("Request failed: " + textStatus);
+
+                }).always(function () {
+                    console.log("completou");
+                });
+            });
+            $("#limpa").click(function () {
+                $("div").empty();
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <input type="text" id="nome" placeholder="Nome"> <br>
+    <input type="number" id="tel" placeholder="Telefone"><br>
+    <input type="text" id="email" placeholder="Email"><br>
+    <button id="botao">Pegar Valor</button>
+    <button id="limpa" type="reset">Limpar</button><br>
+    <div> </div>
+</body>
+
+</html>
