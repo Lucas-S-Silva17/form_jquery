@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#soma').click(function () {
+                var n1 = $('#n1').val();
+                var n2 = $('#n2').val();
+                var request = $.ajax({
+                    url: "script.php",
+                    type: "POST",
+                    data: "#num1=" + n1 + "& #num2=" + n2,
+                    dataType: "html"
+                })
+
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <input type="number" id="n1" placeholder="Nome"> <br>
+    <input type="number" id="n2" placeholder="Telefone"><br>
+    <button id="soma">+</button>
+    <button id="sub">-</button>
+    <button id="mult">X</button>
+    <button id="divi">/</button>
+    <div> </div>
+</body>
+
+</html>
